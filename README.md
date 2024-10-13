@@ -92,3 +92,15 @@ export default defineAppConfig({
   },
 })
 ```
+normally using the endpoint
+```bash
+useHttp().request('example').fetch('/api').then((res) => {
+  console.log(res)
+})
+
+useHttp().request('another').fetch('/api', {
+  method: 'POST',
+}).then((res) => {
+  console.log(res)
+})
+```
