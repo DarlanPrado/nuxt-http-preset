@@ -36,7 +36,7 @@ endpoints are linked globally and can be accessed from anywhere
 
 ## 📖 Docs
 
-[details useHttp().add()
+### useHttp().add()
 adds a new endpoint
 
 ```bash
@@ -48,9 +48,9 @@ useHttp().add('closeApi', {
 })
 ```
 you can configure default parameters as available in [$fetch](https://nuxt.com/docs/api/utils/dollarfetch)
-]
 
-[details useHttp().request()
+
+### useHttp().request()
 uses an available endpoint
 ```bash
 useHttp().request('closeApi').fetch('verifySession', {
@@ -62,12 +62,11 @@ useHttp().request('closeApi').fetch('verifySession', {
   }
 })
 ```
-]
 
-[details useHttp().endpoints()
+
+### useHttp().endpoints()
 list available endpoints
 ```bash
 # Return: [ "ddd", "closeApi" ]
 console.log(useHttp().endpoints)
 ```
-]
