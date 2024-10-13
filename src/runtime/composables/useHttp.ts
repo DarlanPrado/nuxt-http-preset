@@ -1,13 +1,15 @@
 import type { FetchOptions } from 'ofetch'
-import { useState } from '#imports'
-
-interface HttpEndpoints {
-  name: string
-  fetchOptions: FetchOptions
-}
+import type { AppConfigInput } from 'nuxt/schema'
+import type { HttpEndpoints } from '../types/httpEndpoints'
+import { createError, ref, useAppConfig, useState } from '#imports'
 
 export function useHttp() {
-  const httpEndpoints = useState<HttpEndpoints[]>('http-endpoints', () => [])
+  const httpEndpoints = useState<HttpEndpoints[]>('http-endpoints', () => {
+    const appConfig = useAppConfig() as unknown as AppConfigInput
+    return appConfig.http?.endpoints || []
+  })
+
+  const endpoints = ref(httpEndpoints.value.map(endpoint => endpoint.name))
 
   function add(name: string, fetchOptions: FetchOptions) {
     const index = httpEndpoints.value.findIndex(endpoint => endpoint.name === name)
@@ -25,7 +27,7 @@ export function useHttp() {
     const endpointOptions = httpEndpoints.value.find(endpoint => endpoint.name === endpointName)?.fetchOptions
 
     if (!endpointOptions) {
-      throw new Error(`Endpoints not found`)
+      throw createError(`Endpoint "${endpointName}" not exist.`)
     }
 
     return {
@@ -35,7 +37,7 @@ export function useHttp() {
 
   return {
     add,
-    endpoints: httpEndpoints.value.map(endpoint => endpoint.name),
-    request: request,
+    endpoints,
+    request,
   }
 }

@@ -70,3 +70,25 @@ list available endpoints
 # Return: [ "ddd", "closeApi" ]
 console.log(useHttp().endpoints)
 ```
+### Adding endpoints by  [app.config.ts](https://nuxt.com/docs/guide/directory-structure/app-config)
+If you want to define an endpoint in a fixed way in your project, you can add it directly through "app.config.ts", this way the endpoint is defined as soon as the module is instantiated
+
+```bash
+# app.config.ts
+export default defineAppConfig({
+  http: {
+    endpoints: [
+      { name: 'example',
+        fetchOptions: {
+          baseURL: 'https://api.example.com',
+        },
+      },
+      { name: 'another',
+        fetchOptions: {
+          baseURL: 'https://api.another.com',
+        },
+      },
+    ],
+  },
+})
+```

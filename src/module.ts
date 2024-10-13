@@ -1,8 +1,17 @@
-import { defineNuxtModule, addPlugin, createResolver, addImportsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit'
 import { name, version } from '../package.json'
+import type { HttpEndpoints } from './runtime/types/httpEndpoints'
 
 // Module options TypeScript interface definition
 // export interface ModuleOptions {}
+
+declare module 'nuxt/schema' {
+  interface AppConfigInput {
+    http?: {
+      endpoints: HttpEndpoints[]
+    }
+  }
+}
 
 export default defineNuxtModule({
   meta: {
@@ -17,9 +26,6 @@ export default defineNuxtModule({
 
     const runtimeDir = resolver.resolve('./runtime')
     _nuxt.options.build.transpile.push(runtimeDir)
-
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
     addImportsDir(resolver.resolve(runtimeDir, 'composables'))
   },
 })
