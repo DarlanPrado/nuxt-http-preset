@@ -1,17 +1,8 @@
 import { defineNuxtModule, createResolver, addImportsDir } from '@nuxt/kit'
 import { name, version } from '../package.json'
-import type { HttpEndpoints } from './runtime/composables/useHttp'
 
 // Module options TypeScript interface definition
 // export interface ModuleOptions {}
-
-declare module 'nuxt/schema' {
-  interface AppConfigInput {
-    http?: {
-      endpoints: HttpEndpoints[]
-    }
-  }
-}
 
 export default defineNuxtModule({
   meta: {
