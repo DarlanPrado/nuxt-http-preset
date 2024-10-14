@@ -19,4 +19,10 @@ useHttp().request('ddd').fetch('47').then((res) => {
 }).catch((error) => {
   console.log(error)
 })
+
+// useHttp().request('ddd').useFetch('47').then((res) => {
+//   data.value = res
+// }).catch((error) => {
+//   console.log(error)
+// })
 </script>

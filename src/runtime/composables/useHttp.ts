@@ -1,5 +1,6 @@
-import type { FetchOptions } from 'ofetch'
-import { createError, useAppConfig } from '#imports'
+import type { FetchError, FetchOptions } from 'ofetch'
+import { createError, useAppConfig, useFetch } from '#imports'
+import type { AsyncData, UseFetchOptions } from '#app'
 
 interface HttpEndpoints {
   name: string
@@ -19,7 +20,10 @@ declare module 'nuxt/schema' {
 interface UseHttpReturn {
   add: (name: string, fetchOptions: FetchOptions) => FetchOptions
   endpoints: string[]
-  request: (endpointName: string) => { fetch: ReturnType<typeof $fetch.create> }
+  request: (endpointName: HttpEndpoints['name']) => {
+    fetch: ReturnType<typeof $fetch.create>
+    useFetch: <T>(url: string | (() => string), options?: UseFetchOptions<T>) => AsyncData<T, FetchError | null>
+  }
 }
 
 export function useHttp(): UseHttpReturn {
@@ -47,6 +51,12 @@ export function useHttp(): UseHttpReturn {
 
     return {
       fetch: $fetch.create(endpointOptions),
+      useFetch: <T>(url: string | (() => string), options?: UseFetchOptions<T>) => {
+        return useFetch(url, {
+          ...options,
+          $fetch: $fetch.create(endpointOptions),
+        }) as AsyncData<T, FetchError | null>
+      },
     }
   }
 
