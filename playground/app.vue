@@ -9,7 +9,7 @@ const data = ref()
 
 // adds a new endpoint
 useHttp().add('ddd', {
-  baseURL: 'https://brasilapi.com.br/api/ddd/v2',
+  baseURL: 'https://brasilapi.com.br/api/ddd/v1',
 })
 
 // makes a request to the "ddd" endpoint using its settings

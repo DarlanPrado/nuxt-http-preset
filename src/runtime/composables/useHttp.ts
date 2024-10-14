@@ -1,12 +1,11 @@
 import type { FetchOptions } from 'ofetch'
-import type { AppConfigInput } from 'nuxt/schema'
 import type { HttpEndpoints } from '../types/httpEndpoints'
 import { createError, ref, useAppConfig, useState } from '#imports'
 
 export function useHttp() {
   const httpEndpoints = useState<HttpEndpoints[]>('http-endpoints', () => {
-    const appConfig = useAppConfig() as unknown as AppConfigInput
-    return appConfig.http?.endpoints || []
+    // @ts-expect-error: AppConfig type is a relationship of a key being a string with an unknown value, which causes an error when trying to use http.endpoints
+    return useAppConfig().http?.endpoints || []
   })
 
   const endpoints = ref(httpEndpoints.value.map(endpoint => endpoint.name))
