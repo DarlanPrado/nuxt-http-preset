@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>{{ data }}</p>
+    <p>{{ useHttp().endpoints }}</p>
   </div>
 </template>
 
