@@ -5,6 +5,25 @@
   "repository": "DarlanPrado/nuxt-http-preset",
   "license": "MIT",
   "type": "module",
+  "keywords": [
+    "nuxt",
+    "http",
+    "api",
+    "nuxt-module",
+    "nuxt3",
+    "fetch"
+  ],
+  "homepage": "https://github.com/DarlanPrado/nuxt-http-preset#readme",
+  "bugs": {
+    "url": "https://github.com/DarlanPrado/nuxt-http-preset/issues"
+  },
+  "contributors": [
+    {
+      "name": "Darlan José Batista do Prado",
+      "email": "darlanprado.contact@gmail.com",
+      "url": "https://github.com/DarlanPrado"
+    }
+  ],
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
