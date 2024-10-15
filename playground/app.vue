@@ -21,7 +21,7 @@ useHttp().request('ddd').fetch('47').then((res) => {
 })
 
 // useHttp().request('ddd').useFetch('47').then((res) => {
-//   data.value = res
+//   data.value = res.data
 // }).catch((error) => {
 //   console.log(error)
 // })
