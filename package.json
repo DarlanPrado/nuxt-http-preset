@@ -1,6 +1,6 @@
 {
   "name": "nuxt-http-preset",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A Nuxt module to manage and simplify HTTP requests across multiple APIs and endpoints.",
   "repository": "DarlanPrado/nuxt-http-preset",
   "license": "MIT",

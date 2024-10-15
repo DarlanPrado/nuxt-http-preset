@@ -51,7 +51,9 @@ you can configure default parameters as available in [$fetch](https://nuxt.com/d
 
 
 ### useHttp().request()
-uses an available endpoint
+uses an available endpoint, you can choose to use fetch or useFetch
+
+`fetch` https://nuxt.com/docs/api/utils/dollarfetch
 ```bash
 useHttp().request('closeApi').fetch('verifySession', {
   method: 'POST',
@@ -60,6 +62,15 @@ useHttp().request('closeApi').fetch('verifySession', {
     navigateTo('/')
     console.log('session expired')
   }
+})
+```
+
+`useFetch` https://nuxt.com/docs/api/composables/use-fetch
+```bash
+useHttp().request('ddd').useFetch('47').then((res) => {
+  data.value = res.data
+}).catch((error) => {
+  console.log(error)
 })
 ```
 
